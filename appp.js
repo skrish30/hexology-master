@@ -72,9 +72,15 @@ function READFile(Types){
 
       Entype.forEach((number)=>{
         entities = number.key;
-        console.log(entities);
-        console.log(Type);
-        io.emit(number, entities)
+        //console.log(entities);
+        //console.log(Type);
+        if(Type=="Person"||Type=="Quantity"||Type=="Location"){
+          io.emit(Type, entities)
+        }
+        else()=>{
+          io.emit("Other",entities)
+        }
+
       })
     })
   });
