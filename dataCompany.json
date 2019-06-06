@@ -1,0 +1,29 @@
+{
+  "type": "nested",
+  "path": "enriched_text.entities",
+  "matching_results": 17,
+  "aggregations": [
+    {
+      "type": "filter",
+      "match": "enriched_text.entities.type::Company",
+      "matching_results": 2,
+      "aggregations": [
+        {
+          "type": "term",
+          "field": "enriched_text.entities.text",
+          "count": 10,
+          "results": [
+            {
+              "key": "Breakthrough Starshot",
+              "matching_results": 1
+            },
+            {
+              "key": "Proxima Centauri",
+              "matching_results": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
