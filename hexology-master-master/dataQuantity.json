@@ -1,0 +1,41 @@
+{
+  "type": "nested",
+  "path": "enriched_text.entities",
+  "matching_results": 17,
+  "aggregations": [
+    {
+      "type": "filter",
+      "match": "enriched_text.entities.type::Quantity",
+      "matching_results": 5,
+      "aggregations": [
+        {
+          "type": "term",
+          "field": "enriched_text.entities.text",
+          "count": 10,
+          "results": [
+            {
+              "key": "12 minutes",
+              "matching_results": 1
+            },
+            {
+              "key": "13.8 billion years",
+              "matching_results": 1
+            },
+            {
+              "key": "four billion years",
+              "matching_results": 1
+            },
+            {
+              "key": "one year",
+              "matching_results": 1
+            },
+            {
+              "key": "three decades",
+              "matching_results": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

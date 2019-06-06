@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Imperial Hexology</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font: 15px Helvetica, Arial; overflow: scroll; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #eee; }
+        #main { position: absolute; padding-bottom: 0px; margin-top: 0px; left: 13%; top: 185%;}
+        #title {color: white}       
+        #header { background: url(./images/headbackground.jpg); }
+        
+        #middle {height: 450px; width: 1200px;}
+        #videoleft {width: 600px; float: left;}
+        #boxright {height: 500px; width: 500px; float: right;}
+        #conceptright {position: absolute; height: 500px; width: 500px; left: 54%; top: 147.5%;}
+
+        #people {position: absolute; top: 30%; left: 37.5%; font-size: 20px; color: rgb(14, 2, 66);}
+        #people-title {position: absolute; bottom: 275%; left: 30%;}
+        #people li:nth-last-child(1) { color:crimson; }
+        #location {position: absolute; top: 30%; left: 40%; font-size: 20px; color: rgb(14, 2, 66);}
+        #location-title {position: absolute; bottom: 275%; left: 30%;}
+        #location li:nth-last-child(1) { color:crimson; }
+        #quantity {position: absolute; top: 30%; left: 40%; font-size: 20px; color: rgb(14, 2, 66);}
+        #quantity-title {position: absolute; bottom: 275%; left: 30%;}
+        #quantity li:nth-last-child(1) { color:crimson; }
+        #other {position: absolute; top: 30%; left: 40%; font-size: 20px; color: rgb(14, 2, 66);}
+        #other-title {position: absolute; bottom: 275%; left: 30%;}
+        #other li:nth-last-child(1) { color:crimson; }
+        #hidebutton {position: absolute; left: 10%;}
+
+        #concept1 {position: absolute; bottom: 500%; left: 30%; color:darkorange; font-size: 30px;}
+        #abstract1 {position: absolute; bottom: 425%; left: 10%; color:darkblue; font-size: 20px;}
+        #concept2 {position: absolute; bottom: 500%; left: 30%; color:darkorange; font-size: 30px;}
+        #abstract2 {position: absolute; bottom: 425%; left: 10%; color:darkblue; font-size: 20px;}
+        #concept3 {position: absolute; bottom: 500%; left: 30%; color:darkorange; font-size: 30px;}
+        #abstract3 {position: absolute; bottom: 425%; left: 10%; color:darkblue; font-size: 20px;}
+        #concept4 {position: absolute; bottom: 500%; left: 30%; color:darkorange; font-size: 30px;}
+        #abstract4 {position: absolute; bottom: 425%; left: 10%; color:darkblue; font-size: 20px;}
+    </style>
+</head>
+    
+<body>
+    
+    <section id="banner" data-video="images/banner">
+        <div class="inner">
+            <header>
+                <h1>Unlock The Magic</h1>
+                <p>For anyone that wants to share their digital media in a real location, </br><a href="https://hexology.co/">Hexology</a> is the social media app that puts your content into the #physicalworld.</p>
+            </header>
+            <a href="#main" class="more">Learn More</a>
+        </div>
+    </section>
+    
+    <div class="container-fluid pb-2" id="header">
+        <h1 class="text-center mb-3" id="title">#hexology</h1>
+        <form action="/api/members" method="POST" class="mb-4">
+            <div class="form-group">
+                    <label for="name" class="font-italic">Please enter your URL link below:</label>
+                    <input type="url" name="url" class="form-control">
+            </div>
+                <input type="submit" value="Submit" class="btn btn-primary btn-block">
+        </form> 
+    </div>
+  
+    <div class="container mt-2 mb-2" id="middle">
+        
+        <div class="container" id="videoleft">
+            <video id="my_video" width="600">
+               <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="container" id="boxright">            
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./images/textbackground.jpg" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 id="people-title">People</h1>
+                            <button type="button" class="btn btn-primary">
+                            Notifications <span class="badge badge-light" id="output1"></span>
+                            </button>
+                        </div>
+                        <div class="people">
+                            <ul id="people"></ul>
+                        </div>                  
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./images/textbackground.jpg" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h2 id="location-title">Location</h2>
+                        <button type="button" class="btn btn-primary">
+                        Notifications <span class="badge badge-light" id="output2"></span>
+                        </button>
+                        </div>
+                        <div class="location">
+                            <ul id="location"></ul>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./images/textbackground.jpg" class="w-100">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h3 id="quantity-title">Quantity</h3>
+                        <button type="button" class="btn btn-primary">
+                        Notifications <span class="badge badge-light" id="output3"></span>
+                        </button>
+                      </div>
+                      <div class="quantity">
+                        <ul id="quantity"></ul>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./images/textbackground.jpg" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4 id="other-title">Other</h4>
+                            <button type="button" class="btn btn-primary">
+                            Notifications <span class="badge badge-light" id="output4"></span>
+                            </button>
+                        </div>
+                        <div class="other">
+                            <ul id="other"></ul>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>            
+        </div>
+    </div>
+    
+    <div class="bd-example" id="conceptright">
+        <div id="carouselExampleCaptions2" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./images/conceptbackground.jpg" class="d-block w-100">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 id="concept1"></h5>
+                <p id="abstract1"></p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/conceptbackground.jpg" class="d-block w-100">
+              <div class="carousel-caption d-none d-md-block">
+                <h6 id="concept2"></h6>
+                <p id="abstract2"></p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/conceptbackground.jpg" class="d-block w-100">
+              <div class="carousel-caption d-none d-md-block">
+                <h7 id="concept3"></h7>
+                <p id="abstract3"></p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/conceptbackground.jpg" class="d-block w-100">
+              <div class="carousel-caption d-none d-md-block">
+                <h8 id="concept4"></h8>
+                <p id="abstract4"></p>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleCaptions2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+    <div class="container text-center" id="video_controls_var">
+        <button id="playpausebtn" style="background-color:transparent; width: 55px; height: 45px;" class="hide" onclick="playPause(this,'my_video')"></button>
+    </div>
+    
+    <div class="container mt-4 mb-2 text-center" id="main">
+        <div class="container" style="min-height: 10rem">
+        <ul id="messages"></ul>
+        </div>
+        <div class="container">
+        <button id="hidebutton" onclick="hideshow(this)" style="width: 5%; background: rgb(130, 224, 255); border: none; padding: 10px;">Hide</button>
+        <form action="" id="send_message" style="background: #000; padding: 3px; position: fixed; bottom: 0; width: 70%;">
+                <input id="m" autocomplete="off" style="border: 0; padding: 10px; width: 90%; margin-right: .5%;"/><button style="width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;">Send</button>
+        </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>  
+</body>
+</html>
+
+<script>
+    function playPause(btn,vid) {
+        var vid = document.getElementById(vid);
+        if (vid.paused){ 
+        vid.play();
+        //btn.innerHTML = "Pause";
+        }else{ 
+        vid.pause();
+        //btn.innerHTML = "Play";
+        }
+    }
+    function hideshow(btn) {
+        var x = document.getElementById("send_message");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        btn.innerHTML = "Hide";
+        } else {
+        x.style.display = "none";
+        btn.innerHTML = "Show";
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+</script>
+<script>
+    $(function () {
+        var socket = io();
+        $('#send_message').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+        });
+        socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+        });
+
+        $('#playpausebtn').click(function(){
+        socket.emit('timer','timer started')
+        return false;
+        });
+        // socket.on('timer', function(msg){
+        // $(('timer started').text(msg));
+        // });
+
+        //box 1
+        socket.on('people', function(msg){
+        $('#people').append($('<li>').text(msg));
+        var count1 = $("#people").children().length;
+        //count1 = "Total People Msg: " + count1;
+        document.getElementById('output1').innerHTML = count1;
+        });
+
+        //box 2
+        socket.on('location', function(msg){
+        $('#location').append($('<li>').text(msg));
+        var count2 = $("#location").children().length;
+        //count2 = "Total Location Msg: " + count2;
+        document.getElementById('output2').innerHTML = count2;
+        });
+
+        //box 3
+        socket.on('quantity', function(msg){
+        $('#quantity').append($('<li>').text(msg));
+        var count3 = $("#quantity").children().length;
+        //count3 = "Total Quantity Msg: " + count3;
+        document.getElementById('output3').innerHTML = count3;
+        });
+
+        //box 4
+        socket.on('other', function(msg){
+        $('#other').append($('<li>').text(msg));
+        var count4 = $("#other").children().length;
+        //count4 = "Total Other Msg: " + count4;
+        document.getElementById('output4').innerHTML = count4;
+        });
+
+        //concept1
+        socket.on('concept1', function(msg){
+        $('#concept1').append($('<li>').text(msg.concept));
+        $('#abstract1').append($('<li>').text(msg.abstract));
+        });
+
+        //concept2
+        socket.on('concept2', function(msg){
+        $('#concept2').append($('<li>').text(msg.concept));
+        $('#abstract2').append($('<li>').text(msg.abstract));
+        });
+
+        //concept3
+        socket.on('concept3', function(msg){
+        $('#concept3').append($('<li>').text(msg.concept));
+        $('#abstract3').append($('<li>').text(msg.abstract));
+        });
+
+        //concept4
+        socket.on('concept4', function(msg){
+        $('#concept4').append($('<li>').text(msg.concept));
+        $('#abstract4').append($('<li>').text(msg.abstract));
+        });
+    });
+</script>

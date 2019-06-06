@@ -1,0 +1,10 @@
+.hide{
+  background-image: url('../images/playpausebutton.jpg');
+  background-size: 55px 55px;
+  background-position: center;
+}
+#main-header{
+  background-image: url('../images/headbackground.jpg');
+  background-size: 1600px 400px;
+  text-align:center;
+}
